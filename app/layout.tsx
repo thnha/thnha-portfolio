@@ -16,8 +16,8 @@ export const metadata: Metadata = {
   title: "Nha Tran — Mobile Engineer Portfolio",
   description: "Senior React Native Engineer with 13+ years of experience building dependable mobile products, payment systems and hardware integrations.",
   icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
+    icon: `${process.env.NEXT_PUBLIC_BASE_PATH}/favicon.svg`,
+    shortcut: `${process.env.NEXT_PUBLIC_BASE_PATH}/favicon.svg`,
   },
 };
 

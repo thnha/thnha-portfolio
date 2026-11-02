@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Make the exported Next.js site work under `/My-Portfolio` on GitHub Pages while preserving the root URL during local development.
+**Goal:** Make the exported Next.js site work under `/thnha-portfolio` on GitHub Pages while preserving the root URL during local development.
 
 **Architecture:** Let Next.js derive its base path from the environment already supplied by GitHub Actions. Keep all existing static-export settings unchanged and verify the configuration through the production build.
 
@@ -10,7 +10,7 @@
 
 ## Global Constraints
 
-- Use `/My-Portfolio` only when `GITHUB_ACTIONS` is present.
+- Use `/thnha-portfolio` only when `GITHUB_ACTIONS` is present.
 - Keep local development at `http://localhost:3000/`.
 - Do not add dependencies or modify application components.
 - Do not commit changes unless explicitly requested.
@@ -24,7 +24,7 @@
 
 **Interfaces:**
 - Consumes: GitHub Actions' built-in `GITHUB_ACTIONS` environment variable.
-- Produces: Next.js `basePath` configuration with the value `/My-Portfolio` in GitHub Actions and an empty string elsewhere.
+- Produces: Next.js `basePath` configuration with the value `/thnha-portfolio` in GitHub Actions and an empty string elsewhere.
 
 - [ ] **Step 1: Record the current baseline**
 
@@ -41,7 +41,7 @@ Expected: no matches, confirming that the required configuration is absent.
 Add this property to the existing `nextConfig` object:
 
 ```ts
-basePath: process.env.GITHUB_ACTIONS ? "/My-Portfolio" : "",
+basePath: process.env.GITHUB_ACTIONS ? "/thnha-portfolio" : "",
 ```
 
 - [ ] **Step 3: Verify the production build**
