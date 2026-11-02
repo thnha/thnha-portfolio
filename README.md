@@ -30,11 +30,28 @@ The static website is generated in `out/`.
 If you use a custom domain, add it in **Settings → Pages** after the first
 successful deployment.
 
-## Main content files
+## Editing content
 
-- `app/page.tsx` — portfolio content and sections
-- `app/globals.css` — design and responsive styling
-- `app/layout.tsx` — metadata and document layout
+All copy, numbers and links live in `content/`:
+
+- `content/profile.ts` — name, intro, quick facts, links (CV, LinkedIn, GitHub, email), hero proof numbers
+- `content/heroApps.ts` — the five apps orbiting the phone (screenshot / video per app)
+- `content/capabilities.ts`, `content/projects.ts` — capability cards and selected work / case studies
+- `content/lab.ts` — side projects and open-source repos
+- `content/experience.ts`, `content/build.ts` — timeline, process and tech stack
+
+Placeholders: a metric with `sample: true` and an item with `draft: true` show (with a SAMPLE
+badge) in `npm run dev` and are removed from `npm run build`. Set real values and delete those
+flags to publish them.
+
+## Checks
+
+```bash
+npm run lint
+npm run typecheck
+npm run test:unit
+npm run build
+```
 
 ---
 

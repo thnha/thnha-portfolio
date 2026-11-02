@@ -1,0 +1,1119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Nha Tran — Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<style>
+@property --accent { syntax: "<color>"; inherits: true; initial-value: #8b7cff; }
+
+:root {
+  --bg: #0b0912;
+  --bg-2: #120f1d;
+  --card: #14111d;
+  --ivory: #f4efe6;
+  --muted: #a39cb3;
+  --dim: #6f6880;
+  --line: #ffffff14;
+  --ease: cubic-bezier(.22, .8, .24, 1);
+  --dur: 650ms;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--ivory); font: 15px/1.6 Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; }
+img { display: block; max-width: 100%; }
+.shell { width: min(1240px, calc(100% - 32px)); margin-inline: auto; }
+.eyebrow { font: 500 11px "Space Grotesk"; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+.h2 { font: 600 clamp(32px, 4vw, 50px)/1.05 "Space Grotesk"; letter-spacing: -.03em; margin: 12px 0 0; }
+.sec { padding: 120px 0; border-top: 1px solid var(--line); }
+.sec-head { display: flex; justify-content: space-between; align-items: end; gap: 30px; margin-bottom: 50px; }
+.sec-head p { max-width: 380px; color: var(--muted); margin: 0; font-size: 14px; }
+
+/* sample (placeholder) numbers: dashed so they are never mistaken for real data */
+.sample { outline: 1px dashed #ffffff40; outline-offset: 4px; border-radius: 4px; position: relative; }
+.sample::after { content: "sample"; position: absolute; top: -9px; right: -6px; font: 600 8px Inter; letter-spacing: .08em; text-transform: uppercase; background: #3a2f12; color: #f5c451; padding: 1px 4px; border-radius: 3px; }
+
+/* ---------- nav ---------- */
+.nav { display: flex; justify-content: space-between; align-items: center; height: 76px; position: relative; z-index: 5; }
+.brand { font: 600 15px "Space Grotesk"; display: flex; gap: 10px; align-items: center; }
+.brand i { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 14px var(--accent); transition: background var(--dur) var(--ease); }
+.nav nav { display: flex; gap: 30px; font-size: 13px; color: var(--muted); }
+.nav nav a:hover { color: var(--ivory); }
+.nav-right { display: flex; align-items: center; gap: 18px; }
+.nav-link { font-size: 13px; color: var(--muted); }
+.nav-link:hover { color: var(--ivory); }
+.contact-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
+.contact .btn.solid { background: #8b7cff; }
+.nav-cta { font-size: 13px; font-weight: 600; padding: 9px 16px; border: 1px solid var(--line); border-radius: 99px; }
+
+/* ---------- hero ---------- */
+.hero { --accent: #8b7cff; position: relative; overflow: hidden; transition: --accent var(--dur) var(--ease); isolation: isolate; }
+.hero::before {
+  content: ""; position: absolute; inset: 0; z-index: -2;
+  background:
+    radial-gradient(520px 420px at 55% 52%, color-mix(in oklab, var(--accent) 34%, transparent), transparent 70%),
+    radial-gradient(900px 600px at 50% 120%, #2a1d4a66, transparent 70%),
+    linear-gradient(var(--bg), var(--bg-2));
+}
+.hero-grid { display: grid; grid-template-columns: minmax(320px, 1fr) minmax(440px, 580px) 290px; align-items: center; gap: 24px; min-height: calc(100svh - 76px); max-height: 900px; padding-bottom: 40px; }
+.intro .theme { margin: 0 0 22px; }
+.intro h1 { font: 700 clamp(40px, 4.6vw, 64px)/1 "Space Grotesk"; letter-spacing: -.035em; margin: 0; }
+.intro .role { display: block; font-size: .5em; letter-spacing: -.02em; margin-top: 12px; color: var(--accent); transition: color var(--dur) var(--ease); }
+.intro .lede { color: var(--muted); max-width: 360px; margin: 22px 0 0; font-size: 16px; }
+.intro .lede strong { color: var(--ivory); font-weight: 500; }
+.actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 26px; }
+.btn { display: inline-flex; align-items: center; gap: 10px; padding: 13px 20px; border-radius: 99px; font-weight: 600; font-size: 14px; transition: background var(--dur) var(--ease), transform .2s; }
+.btn:active { transform: scale(.97); }
+.btn.ghost { border: 1px solid var(--line); }
+.btn.ghost:hover { border-color: #ffffff40; }
+.btn.solid { background: var(--accent); color: #0b0912; }
+
+.stats { display: flex; flex-wrap: wrap; gap: 14px 28px; }
+.stats[hidden] { display: none; }
+.stats div { display: flex; flex-direction: column; max-width: 140px; }
+.stats b { font: 600 24px/1.1 "Space Grotesk"; letter-spacing: -.02em; align-self: start; }
+.stats span { font-size: 11px; color: var(--muted); line-height: 1.35; margin-top: 4px; }
+.proof { margin-top: 26px; padding-top: 22px; border-top: 1px solid var(--line); }
+.panel .stats { margin: 0 0 22px; }
+.panel .stats b { color: var(--accent); transition: color var(--dur) var(--ease); }
+
+.stage { position: relative; height: clamp(540px, calc(100svh - 100px), 640px); display: grid; place-items: center; perspective: 1400px; }
+.orbit { position: absolute; left: 50%; top: 50%; border: 1px solid var(--line); border-radius: 50%; transform: translate(-50%, -50%) rotateX(68deg); pointer-events: none; }
+.orbit.o1 { width: 560px; height: 560px; }
+.orbit.o2 { width: 420px; height: 420px; border-style: dashed; border-color: #ffffff0d; }
+.phone-wrap { position: relative; z-index: 2; transform-style: preserve-3d; transition: transform .5s var(--ease); }
+.phone {
+  width: clamp(220px, calc((100svh - 150px) * .466), 270px); aspect-ratio: 9 / 19.3; border-radius: 46px; padding: 9px; position: relative;
+  background: linear-gradient(145deg, #5a5566, #1c1a22 30%, #2c2933 60%, #6b6677);
+  box-shadow: 0 0 0 1px #ffffff1a inset, 0 40px 80px -20px #000c, 0 0 90px -10px color-mix(in oklab, var(--accent) 45%, transparent);
+  transition: box-shadow var(--dur) var(--ease);
+}
+.screen { position: relative; height: 100%; border-radius: 38px; overflow: hidden; background: #0f0e14; }
+.island { position: absolute; top: 9px; left: 50%; translate: -50% 0; width: 82px; height: 24px; background: #000; border-radius: 20px; z-index: 5; }
+.app { position: absolute; inset: 0; padding: 44px 16px 16px; display: flex; flex-direction: column; gap: 10px; font-size: 11px; opacity: 0; transform: translateY(14px) scale(.98); transition: opacity .45s var(--ease), transform .55s var(--ease); pointer-events: none; }
+.app.on { opacity: 1; transform: none; }
+.app.shot-full { padding: 0; background: #fff; }
+.app.shot-full img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.app h4 { margin: 0; font: 600 17px "Space Grotesk"; letter-spacing: -.02em; }
+.app small { color: #8d879c; font-size: 10px; }
+.card { background: #ffffff0b; border: 1px solid #ffffff0f; border-radius: 14px; padding: 10px 12px; }
+.row { display: flex; justify-content: space-between; align-items: center; }
+.pill { font-size: 9px; padding: 3px 7px; border-radius: 99px; background: color-mix(in oklab, var(--c) 22%, transparent); color: var(--c); font-weight: 600; }
+.cta { margin-top: auto; text-align: center; padding: 12px; border-radius: 14px; background: var(--c); color: #0b0912; font-weight: 700; font-size: 12px; }
+.bar { height: 6px; border-radius: 3px; background: #ffffff12; overflow: hidden; }
+.bar i { display: block; height: 100%; background: var(--c); border-radius: 3px; }
+.keypad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; }
+.keypad span { display: grid; place-items: center; height: 38px; border-radius: 12px; background: #ffffff0b; font: 500 15px "Space Grotesk"; }
+.menu { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.menu .card { padding: 8px; }
+.menu .img { height: 54px; border-radius: 10px; margin-bottom: 6px; background: radial-gradient(circle at 40% 40%, color-mix(in oklab, var(--c) 70%, #fff3), color-mix(in oklab, var(--c) 25%, #0000)); }
+.dot { width: 7px; height: 7px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 8px #4ade80; display: inline-block; margin-right: 6px; }
+
+.icons { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
+.icon {
+  --c: #fff; position: absolute; left: 50%; top: 50%; width: 58px; height: 58px; margin: -29px 0 0 -29px;
+  border-radius: 18px; border: 1px solid #ffffff1f; cursor: pointer; pointer-events: auto;
+  background: linear-gradient(150deg, color-mix(in oklab, var(--c) 85%, #fff 15%), color-mix(in oklab, var(--c) 55%, #000));
+  display: grid; place-items: center; font: 700 17px "Space Grotesk"; color: #0b0912;
+  box-shadow: 0 12px 30px -8px #000a;
+  transition: transform .7s var(--ease), box-shadow .5s var(--ease), filter .5s var(--ease);
+  filter: saturate(.55) brightness(.8);
+}
+.icon:hover { filter: saturate(.85) brightness(.95); }
+.icon[aria-pressed="true"] { filter: none; box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px var(--c), 0 16px 40px -6px color-mix(in oklab, var(--c) 70%, transparent); }
+.icon:focus-visible { outline: 2px solid var(--ivory); outline-offset: 4px; }
+.icon .label { position: absolute; top: calc(100% + 9px); white-space: nowrap; font: 500 11px Inter; color: var(--muted); opacity: 0; transition: opacity .3s; }
+.icon.right .label { left: 0; }
+.icon.left .label { right: 0; }
+.icon[aria-pressed="true"] .label, .icon:hover .label { opacity: 1; color: var(--ivory); }
+
+.panel { border-left: 1px solid var(--line); padding-left: 28px; }
+.panel .kicker { font: 500 11px "Space Grotesk"; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); transition: color var(--dur) var(--ease); display: flex; justify-content: space-between; }
+.panel .kicker span:last-child { color: var(--muted); letter-spacing: .08em; }
+.swap { transition: opacity .25s ease, transform .35s var(--ease); }
+.swap.out { opacity: 0; transform: translateY(8px); }
+.panel h2 { font: 600 30px/1.1 "Space Grotesk"; letter-spacing: -.03em; margin: 14px 0 12px; }
+.panel p { color: var(--muted); margin: 0 0 18px; font-size: 14px; }
+.panel dl { margin: 0 0 22px; display: grid; gap: 12px; }
+.panel dl > div[hidden] { display: none; }
+.panel dt { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); }
+.panel dd { margin: 3px 0 0; font-size: 13px; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tags span { font-size: 11px; padding: 4px 9px; border-radius: 99px; border: 1px solid var(--line); color: var(--muted); }
+.panel .tags { margin-bottom: 24px; }
+
+/* ---------- recruiter card ---------- */
+.recruit { padding: 0 0 100px; background: var(--bg-2); }
+.rc { display: grid; grid-template-columns: 1.3fr 1.5fr auto; gap: 34px; align-items: center; padding: 28px 30px; border-radius: 24px; border: 1px solid var(--line); background: linear-gradient(135deg, #1a1526, #110e19); box-shadow: 0 30px 60px -30px #000; }
+.rc-who { display: flex; gap: 18px; align-items: center; }
+.avatar { flex: none; width: 84px; height: 84px; border-radius: 50%; overflow: hidden; display: grid; place-items: center; font: 700 26px "Space Grotesk"; color: #0b0912; background: linear-gradient(140deg, #c4b8ff, #8b7cff 55%, #4b3fb0); box-shadow: 0 0 0 3px var(--bg-2), 0 0 0 4px #8b7cff66; }
+.avatar img { width: 100%; height: 100%; object-fit: cover; }
+.rc-intro { margin: 8px 0 0; font-size: 14px; color: #d8d2e2; }
+.rc-facts { margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 24px; }
+.rc-facts dt { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); }
+.rc-facts dd { margin: 2px 0 0; font-size: 13px; }
+.rc-actions { display: flex; flex-direction: column; gap: 8px; }
+.rc-actions .btn { justify-content: center; white-space: nowrap; }
+.rc .btn.solid { background: #8b7cff; }
+button.btn { background: none; cursor: pointer; }
+
+/* ---------- hardware lab ---------- */
+#hwlab { --c: #f5b84b; background: radial-gradient(700px 400px at 20% 30%, #f5b84b12, transparent 70%); }
+.hw { display: grid; grid-template-columns: 1.15fr 1fr; gap: 28px; align-items: start; }
+.hw-devices { display: grid; gap: 18px; }
+.pos { background: var(--card); border: 1px solid var(--line); border-radius: 22px; padding: 20px; display: grid; gap: 14px; font-size: 13px; }
+.pos small { color: var(--dim); }
+.pos-items { display: grid; gap: 8px; padding: 12px 0; border-block: 1px solid var(--line); }
+.pos-items .total { font: 600 16px "Space Grotesk"; padding-top: 4px; }
+.seg-group { display: flex; gap: 10px; flex-wrap: wrap; }
+.seg { display: inline-flex; padding: 3px; border-radius: 99px; background: #ffffff0a; border: 1px solid var(--line); }
+.seg button { border: 0; background: none; padding: 6px 12px; border-radius: 99px; font-size: 12px; color: var(--muted); cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--ivory); color: #0b0912; font-weight: 600; }
+.seg button:disabled { cursor: default; }
+.drop { display: flex; gap: 8px; align-items: center; font-size: 12px; color: var(--muted); cursor: pointer; }
+.drop input { accent-color: #f5b84b; }
+.hw-go { justify-content: center; background: #f5b84b !important; color: #0b0912; border: 0; cursor: pointer; font-size: 15px; padding: 14px; }
+.hw-go:disabled { opacity: .55; cursor: progress; }
+.hw-row { display: grid; grid-template-columns: 1fr 1.2fr; gap: 18px; align-items: start; }
+.terminal { position: relative; justify-self: center; width: 150px; padding: 12px 12px 16px; border-radius: 24px; background: linear-gradient(160deg, #3a3646, #17151d); box-shadow: 0 0 0 1px #ffffff14 inset, 0 24px 40px -18px #000; }
+.t-screen { white-space: pre-line; height: 92px; border-radius: 12px; background: #0d1a12; display: grid; place-items: center; text-align: center; padding: 8px; font: 600 13px "Space Grotesk"; color: #86efac; box-shadow: inset 0 0 18px #22c55e22; transition: background .3s, color .3s; }
+.t-screen.ok { background: #14532d; color: #dcfce7; }
+.t-screen.warn { background: #3a2a0a; color: #fde68a; }
+.t-keys { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 12px; }
+.t-keys i { height: 14px; border-radius: 5px; background: #ffffff14; }
+.t-label { display: block; text-align: center; font-size: 11px; color: var(--dim); margin-top: 10px; }
+.card-chip { position: absolute; width: 84px; height: 54px; border-radius: 9px; left: 50%; top: 22px; margin-left: -42px; background: linear-gradient(135deg, #a78bfa, #6d28d9); box-shadow: 0 10px 24px -6px #000a; opacity: 0; transform: translate(90px, -40px) rotate(18deg); transition: transform .7s var(--ease), opacity .4s; pointer-events: none; }
+.card-chip::before { content: ""; position: absolute; left: 10px; top: 16px; width: 16px; height: 12px; border-radius: 3px; background: #fcd34d; }
+.card-chip.tap { opacity: 1; transform: translate(0, 4px) rotate(-4deg); }
+.printer { display: grid; justify-items: center; }
+.p-body { width: 100%; max-width: 220px; height: 70px; border-radius: 16px 16px 10px 10px; background: linear-gradient(170deg, #34303f, #1a1821); box-shadow: 0 0 0 1px #ffffff14 inset; position: relative; }
+.p-led { position: absolute; right: 14px; top: 14px; width: 7px; height: 7px; border-radius: 50%; background: #3f3a4a; transition: background .3s, box-shadow .3s; }
+.p-led.on { background: #4ade80; box-shadow: 0 0 8px #4ade80; }
+.p-slot { position: absolute; left: 14%; right: 14%; bottom: 10px; height: 4px; border-radius: 2px; background: #0b0912; }
+.receipt { width: 84%; max-width: 170px; margin-top: -12px; max-height: 0; overflow: hidden; transition: max-height 1.4s steps(14); }
+.receipt.out { max-height: 220px; }
+.receipt > div { background: #fbfaf7; color: #222; font: 9.5px/1.45 ui-monospace, Menlo, monospace; padding: 10px 10px 14px; white-space: nowrap; overflow: hidden; clip-path: polygon(0 0, 100% 0, 100% 96%, 94% 100%, 88% 96%, 82% 100%, 76% 96%, 70% 100%, 64% 96%, 58% 100%, 52% 96%, 46% 100%, 40% 96%, 34% 100%, 28% 96%, 22% 100%, 16% 96%, 10% 100%, 4% 96%, 0 100%); }
+.hw-side { display: grid; gap: 16px; }
+.layers { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; counter-reset: l; }
+.layers li { position: relative; padding: 12px 14px 12px 46px; border-radius: 14px; border: 1px solid var(--line); background: var(--card); transition: border-color .3s, box-shadow .3s, background .3s; counter-increment: l; }
+.layers li::before { content: counter(l); position: absolute; left: 14px; top: 50%; translate: 0 -50%; width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center; font: 600 10px "Space Grotesk"; background: #ffffff10; color: var(--muted); transition: background .3s, color .3s; }
+.layers li:not(:last-child)::after { content: ""; position: absolute; left: 23px; bottom: -9px; width: 2px; height: 9px; background: var(--line); }
+.layers b { display: block; font: 600 14px "Space Grotesk"; }
+.layers small { color: var(--dim); font-size: 12px; font-family: ui-monospace, Menlo, monospace; }
+.layers li.on { border-color: #f5b84b; box-shadow: 0 0 0 3px #f5b84b1f; background: #1d1810; }
+.layers li.on::before { background: #f5b84b; color: #0b0912; }
+.layers li.warn { border-color: #fb923c; background: #22140c; }
+.layers li.done::before { background: #4ade8033; color: #4ade80; }
+.log { margin: 0; height: 196px; overflow: auto; padding: 14px; border-radius: 14px; background: #07060b; border: 1px solid var(--line); font: 11.5px/1.7 ui-monospace, Menlo, monospace; color: #cfc8da; white-space: pre-wrap; }
+.log .dim { color: var(--dim); }
+.log .k { color: #f5b84b; }
+.log .ok { color: #4ade80; }
+.log .bad { color: #fb923c; }
+.hw-note { margin: 0; font-size: 11px; color: var(--dim); }
+
+/* ---------- open source ---------- */
+.sub-h { font: 600 20px "Space Grotesk"; margin: 56px 0 18px; }
+.oss { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.repo { display: flex; flex-direction: column; gap: 8px; padding: 20px 22px; border-radius: 18px; border: 1px solid var(--line); background: var(--card); }
+.repo:hover { border-color: #ffffff30; }
+.repo .name { font: 600 16px ui-monospace, Menlo, monospace; }
+.repo p { margin: 0; color: var(--muted); font-size: 13px; }
+.repo .meta { display: flex; gap: 18px; font-size: 12px; color: var(--dim); margin-top: 4px; align-items: center; }
+.repo .meta b { color: var(--ivory); font-weight: 600; }
+.screen-video { width: 100%; height: 100%; object-fit: cover; }
+#builtWith b { color: var(--ivory); font-weight: 600; }
+
+/* ---------- capabilities ---------- */
+.caps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.cap { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 26px; display: flex; flex-direction: column; gap: 14px; transition: border-color .3s, transform .3s var(--ease); }
+.cap:hover { border-color: color-mix(in oklab, var(--c) 50%, transparent); transform: translateY(-3px); }
+.cap .num { font: 500 11px "Space Grotesk"; color: var(--c); letter-spacing: .1em; }
+.cap h3 { font: 600 21px/1.2 "Space Grotesk"; letter-spacing: -.02em; margin: 0; }
+.cap p { margin: 0; color: var(--muted); font-size: 14px; }
+.cap .stats { margin-top: auto; padding-top: 16px; border-top: 1px solid var(--line); }
+.cap .stats b { font-size: 20px; color: var(--ivory); }
+.cap .proof-link { font-size: 12px; color: var(--c); font-weight: 600; }
+
+/* ---------- selected work ---------- */
+.project { display: grid; grid-template-columns: 1.2fr 1fr; gap: 56px; align-items: center; padding: 56px 0; border-top: 1px solid var(--line); }
+.project:first-of-type { border-top: 0; padding-top: 0; }
+.media { border-radius: 24px; background: #f3f1f6; border: 1px solid var(--line); overflow: hidden; position: relative; aspect-ratio: 16 / 11; display: grid; place-items: center; padding: 24px; }
+.media img { max-height: 100%; object-fit: contain; }
+.media.dark { background: radial-gradient(70% 80% at 50% 100%, color-mix(in oklab, var(--c) 22%, transparent), transparent), #15121f; }
+.media .phones { display: flex; gap: 14px; align-items: center; height: 100%; }
+.media .phones { justify-content: center; width: 100%; }
+.media .phones img { max-height: 92%; width: 30%; object-fit: contain; border-radius: 16px; box-shadow: 0 20px 40px -12px #0006; }
+.media .phones img:nth-child(2) { max-height: 100%; width: 32%; }
+.media .credit { position: absolute; left: 12px; bottom: 10px; font-size: 10px; color: #0008; background: #fff9; padding: 2px 7px; border-radius: 99px; }
+.media.dark .credit { color: var(--dim); background: #0006; }
+.media .ph { color: var(--dim); font-size: 13px; text-align: center; }
+.project .eyebrow { color: var(--c); }
+.project h3 { font: 600 30px/1.1 "Space Grotesk"; letter-spacing: -.02em; margin: 10px 0 22px; }
+.qa { display: grid; gap: 16px; margin-bottom: 24px; }
+.qa div { padding-left: 14px; border-left: 2px solid var(--c); }
+.qa b { display: block; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); font-weight: 500; margin-bottom: 3px; }
+.qa span { font-size: 14px; color: #d8d2e2; }
+.project .stats { margin-bottom: 24px; }
+.project .stats b { color: var(--c); }
+.links { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; }
+.link { font-weight: 600; font-size: 14px; border-bottom: 1px solid var(--c); padding-bottom: 3px; }
+.link.sub { font-weight: 500; color: var(--muted); border-color: var(--line); font-size: 13px; }
+
+/* ---------- lab ---------- */
+.labs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.lab { background: var(--card); border: 1px solid var(--line); border-radius: 22px; overflow: hidden; display: flex; flex-direction: column; transition: border-color .3s, transform .3s var(--ease); }
+.lab:hover { border-color: color-mix(in oklab, var(--c) 50%, transparent); transform: translateY(-3px); }
+.lab-media { aspect-ratio: 4 / 3; display: grid; place-items: center; background: radial-gradient(70% 80% at 50% 100%, color-mix(in oklab, var(--c) 20%, transparent), transparent), #100d18; color: var(--dim); font-size: 12px; border-bottom: 1px solid var(--line); }
+.lab-media img { width: 100%; height: 100%; object-fit: cover; }
+.lab-body { padding: 22px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+.lab-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.badge { font-size: 10px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; padding: 4px 9px; border-radius: 99px; color: var(--c); background: color-mix(in oklab, var(--c) 16%, transparent); display: inline-flex; align-items: center; gap: 6px; }
+.badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--c); }
+.kind { font-size: 11px; color: var(--dim); }
+.lab h3 { font: 600 21px/1.2 "Space Grotesk"; letter-spacing: -.02em; margin: 0; }
+.lab p { margin: 0; color: var(--muted); font-size: 14px; }
+.lab .built { font-size: 12px; color: var(--dim); margin-top: auto; }
+.lab .stats b { font-size: 20px; color: var(--c); }
+.lab .links:empty { display: none; }
+
+/* ---------- experience ---------- */
+.timeline article { display: grid; grid-template-columns: 150px 1fr 1.4fr; gap: 30px; padding: 28px 0; border-top: 1px solid var(--line); }
+.timeline .when { font: 500 12px "Space Grotesk"; color: var(--dim); letter-spacing: .06em; padding-top: 4px; }
+.timeline h3 { margin: 0 0 4px; font: 600 19px "Space Grotesk"; letter-spacing: -.01em; }
+.timeline .title { color: var(--muted); font-size: 13px; }
+.timeline ul { margin: 0; padding-left: 18px; color: #cfc8da; font-size: 14px; display: grid; gap: 6px; }
+.timeline .tags { margin-top: 12px; }
+.arc { display: flex; gap: 6px; margin-bottom: 40px; flex-wrap: wrap; }
+.arc span { flex: 1; min-width: 120px; padding: 12px 14px; border-radius: 12px; background: var(--card); border: 1px solid var(--line); font-size: 12px; color: var(--muted); }
+.arc b { display: block; color: var(--ivory); font: 600 14px "Space Grotesk"; }
+
+/* ---------- how I build ---------- */
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; counter-reset: s; }
+.step { padding: 24px; border-radius: 18px; border: 1px solid var(--line); counter-increment: s; }
+.step::before { content: "0" counter(s); font: 500 12px "Space Grotesk"; color: var(--dim); }
+.step h3 { font: 600 18px "Space Grotesk"; margin: 12px 0 8px; }
+.step p { margin: 0; font-size: 13px; color: var(--muted); }
+.stack { margin-top: 40px; display: grid; grid-template-columns: 180px 1fr; gap: 14px 30px; font-size: 14px; }
+.stack dt { color: var(--dim); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; padding-top: 3px; }
+.stack dd { margin: 0; color: #d8d2e2; }
+
+/* ---------- contact ---------- */
+.contact { text-align: center; padding: 140px 0 40px; border-top: 1px solid var(--line); background: radial-gradient(600px 300px at 50% 0%, #2a1d4a55, transparent 70%); }
+.contact h2 { font: 700 clamp(40px, 6vw, 76px)/1 "Space Grotesk"; letter-spacing: -.04em; margin: 16px 0 26px; }
+.contact .mail { font: 600 20px "Space Grotesk"; border-bottom: 1px solid #8b7cff; padding-bottom: 4px; }
+.contact .avail { color: var(--muted); font-size: 13px; margin: 22px 0 0; }
+.foot { margin-top: 110px; padding-top: 24px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; font-size: 12px; color: var(--dim); gap: 16px; flex-wrap: wrap; }
+.foot div { display: flex; gap: 22px; }
+.foot a { color: var(--ivory); }
+
+.note { position: fixed; right: 16px; bottom: 16px; z-index: 50; max-width: 270px; font-size: 11px; color: var(--muted); background: #17131fe6; border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; backdrop-filter: blur(8px); }
+.note b { color: #f5c451; }
+
+/* ---------- tablet / mobile ---------- */
+@media (max-width: 1200px) {
+  .hero-grid { grid-template-columns: minmax(300px, 1fr) minmax(420px, 1fr); max-height: none; }
+  .panel { grid-column: 1 / -1; border-left: 0; border-top: 1px solid var(--line); padding: 24px 0 0; }
+  .caps, .labs { grid-template-columns: 1fr 1fr; }
+  .rc { grid-template-columns: 1fr 1fr; }
+  .rc-actions { grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; }
+  .hw { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 820px) {
+  .nav nav { display: none; }
+  .hero-grid { grid-template-columns: 1fr; gap: 8px; min-height: 0; padding: 12px 0 60px; }
+  .intro { text-align: center; }
+  .intro .theme { margin-bottom: 14px; }
+  .intro h1 { font-size: 40px; }
+  .intro .role { margin-top: 8px; }
+  .intro .lede { margin: 14px auto 0; font-size: 14px; }
+  .intro .actions { justify-content: center; }
+  .intro .actions a[href="#work"] { display: none; }
+  .nav-link { display: none; }
+  .proof { justify-content: center; }
+  .proof div { align-items: center; text-align: center; }
+  .proof b { align-self: center; }
+  .stage { height: auto; padding-top: 18px; display: flex; flex-direction: column; align-items: center; gap: 18px; }
+  .orbit { display: none; }
+  .phone { width: min(210px, 56vw); border-radius: 38px; padding: 7px; }
+  .screen { border-radius: 32px; }
+  .app { padding: 38px 12px 12px; gap: 7px; font-size: 10px; }
+  .app.shot-full { padding: 0; }
+  .app h4 { font-size: 15px; }
+  .icons { position: static; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; padding-bottom: 6px; }
+  .icon { position: relative; left: auto; top: auto; margin: 0; width: 50px; height: 50px; border-radius: 15px; font-size: 15px; transform: none !important; }
+  .icon[aria-pressed="true"] { transform: translateY(-4px) !important; }
+  .icon .label { display: none; }
+  .panel h2 { font-size: 26px; }
+  .panel .btn.solid { width: 100%; justify-content: center; }
+  .sec { padding: 80px 0; }
+  .sec-head { flex-direction: column; align-items: start; }
+  .caps, .steps, .labs, .oss { grid-template-columns: 1fr; }
+  .recruit { padding-bottom: 60px; }
+  .rc { grid-template-columns: 1fr; padding: 22px; gap: 22px; }
+  .rc-who { flex-direction: column; text-align: center; }
+  .rc-actions { flex-direction: column; }
+  .hw-row { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .terminal { width: 132px; }
+  .project { grid-template-columns: 1fr; gap: 24px; padding: 40px 0; }
+  .timeline article { grid-template-columns: 1fr; gap: 8px; }
+  .stack { grid-template-columns: 1fr; gap: 4px; }
+  .stack dd { margin-bottom: 12px; }
+  .note { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 1ms !important; animation: none !important; }
+}
+</style>
+</head>
+<body>
+
+<section class="hero" id="hero">
+  <header class="nav shell">
+    <a class="brand" href="#hero"><i></i>Nha Tran</a>
+    <nav><a href="#capabilities">Capabilities</a><a href="#hwlab">Demo</a><a href="#work">Work</a><a href="#lab">Lab</a><a href="#experience">Experience</a></nav>
+    <div class="nav-right">
+      <a class="nav-link" data-link="linkedin" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+      <a class="nav-cta" data-link="cv" download>CV ↓</a>
+    </div>
+  </header>
+
+  <div class="shell hero-grid">
+    <div class="intro">
+      <p class="eyebrow theme">Ideas in orbit · Apps in your hand</p>
+      <h1>Nha Tran<span class="role">Senior React Native Engineer</span></h1>
+      <p class="lede">I build mobile apps that run real businesses — <strong>POS, payments, in-store hardware and offline-first</strong> — across iOS and Android.</p>
+      <div class="stats proof" id="proof"></div>
+      <div class="actions">
+        <a class="btn ghost" href="#work">Selected work ↓</a>
+        <a class="btn ghost" data-link="cv" download>Download CV ↓</a>
+        <a class="btn ghost" data-link="linkedin" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+      </div>
+    </div>
+
+    <div class="stage" id="stage">
+      <div class="orbit o1"></div>
+      <div class="orbit o2"></div>
+
+      <div class="phone-wrap" id="phoneWrap">
+        <div class="phone">
+          <div class="screen">
+            <div class="island"></div>
+
+            <!-- SalonSoft (mock UI — replace with real screenshot) -->
+            <div class="app" data-app="salonsoft" style="--c:#8b7cff">
+              <div class="row"><small>Today · Glow Nails</small><span class="pill">Live</span></div>
+              <h4>Overview</h4>
+              <div class="card"><small>Revenue today</small><div class="row"><b style="font:600 22px 'Space Grotesk'">$2,480</b><span class="pill">+12%</span></div><div class="bar" style="margin-top:8px"><i style="width:72%"></i></div></div>
+              <div class="card"><div class="row"><span>Appointments</span><b>18</b></div><small>4 upcoming in the next hour</small></div>
+              <div class="card"><div class="row"><span>Staff clocked in</span><b>7 / 9</b></div></div>
+              <div class="card"><div class="row"><span>Linh · my earnings</span><b>$312</b></div><small>Visible with owner permission</small></div>
+              <div class="cta">View report</div>
+            </div>
+
+            <!-- Booked By (temporary screenshot from nailsoft.com) -->
+            <div class="app shot-full" data-app="bookedby">
+              <img src="https://nailsoft.com/wp-content/uploads/2024/01/phone-nailsoft-main.png" alt="Booked By — discover salons" />
+            </div>
+
+            <!-- Check-in (mock UI) -->
+            <div class="app" data-app="checkin" style="--c:#3fd0c9">
+              <small>Welcome to Glow Nails</small>
+              <h4>Check in with your phone</h4>
+              <div class="card" style="text-align:center;font:600 18px 'Space Grotesk';letter-spacing:.08em">(714) 555 – 01<span style="opacity:.3">__</span></div>
+              <div class="keypad"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>⌫</span><span>0</span><span>✓</span></div>
+              <div class="row"><small>Queue</small><small>updates live</small></div>
+              <div class="cta">Continue</div>
+            </div>
+
+            <!-- Payments & hardware (mock UI) -->
+            <div class="app" data-app="hardware" style="--c:#f5b84b">
+              <small>Merchant · Devices</small>
+              <h4>Hardware</h4>
+              <div class="card"><div class="row"><span><i class="dot"></i>Dejavoo Z8</span><span class="pill">Wi-Fi</span></div><small>Payment terminal · ready</small></div>
+              <div class="card"><div class="row"><span><i class="dot"></i>Star TSP143</span><span class="pill">USB</span></div><small>Receipt printer · ready</small></div>
+              <div class="card"><div class="row"><span><i class="dot" style="background:#f5b84b;box-shadow:0 0 8px #f5b84b"></i>Sunmi V2s</span><span class="pill">BLE</span></div><small>Reconnecting…</small><div class="bar" style="margin-top:8px"><i style="width:64%"></i></div></div>
+              <div class="card"><div class="row"><small>Last transaction</small><small>approved</small></div></div>
+              <div class="cta">Print test receipt</div>
+            </div>
+
+            <!-- Jollibee (mock UI) -->
+            <div class="app" data-app="ordering" style="--c:#ff5a4e">
+              <div class="row"><small>Deliver to · District 1</small><span class="pill">25 min</span></div>
+              <h4>What are you craving?</h4>
+              <div class="menu">
+                <div class="card"><div class="img"></div><b>Chickenjoy</b><br/><small>89.000₫</small></div>
+                <div class="card"><div class="img"></div><b>Jolly Spaghetti</b><br/><small>45.000₫</small></div>
+                <div class="card"><div class="img"></div><b>Burger Steak</b><br/><small>55.000₫</small></div>
+                <div class="card"><div class="img"></div><b>Peach Pie</b><br/><small>25.000₫</small></div>
+              </div>
+              <div class="cta">View cart · 2 items</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="icons" id="icons" role="group" aria-label="Choose an app"></div>
+    </div>
+
+    <aside class="panel" aria-live="polite">
+      <div class="kicker"><span>Now exploring</span><span id="pCount"></span></div>
+      <div class="swap" id="swap">
+        <h2 id="pName"></h2>
+        <p id="pDesc"></p>
+        <div class="stats" id="pMetrics"></div>
+        <dl>
+          <div id="pRoleRow"><dt>My role</dt><dd id="pRole"></dd></div>
+          <div id="pHardRow"><dt>Hard part</dt><dd id="pHard"></dd></div>
+        </dl>
+        <div class="tags" id="pTags"></div>
+      </div>
+      <a class="btn solid" id="pCta" href="#work">Explore project →</a>
+    </aside>
+  </div>
+</section>
+
+<section class="recruit" id="recruiter">
+  <div class="shell">
+    <div class="rc">
+      <div class="rc-who">
+        <div class="avatar" id="avatar"></div>
+        <div>
+          <span class="eyebrow">For recruiters · 10-second read</span>
+          <p class="rc-intro" id="rcIntro"></p>
+        </div>
+      </div>
+      <dl class="rc-facts" id="rcFacts"></dl>
+      <div class="rc-actions">
+        <a class="btn solid" data-link="cv" download>Download CV ↓</a>
+        <a class="btn ghost" data-link="linkedin" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+        <button class="btn ghost" id="copyEmail" type="button">Copy email</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="capabilities">
+  <div class="shell">
+    <div class="sec-head">
+      <div><span class="eyebrow">What I can do for your team</span><h2 class="h2">Capabilities,<br/>backed by shipped work.</h2></div>
+      <p>Each capability links to the project where I did it in production.</p>
+    </div>
+    <div class="caps" id="caps"></div>
+  </div>
+</section>
+
+<section class="sec" id="hwlab">
+  <div class="shell">
+    <div class="sec-head">
+      <div><span class="eyebrow">Hardware lab · try it</span><h2 class="h2">Tap Charge. Watch the<br/>native layer work.</h2></div>
+      <p>A simulation of the payment and printing flow I built in production — from one JavaScript call down to Swift / Kotlin, the vendor SDK and the device.</p>
+    </div>
+    <div class="hw">
+      <div class="hw-devices">
+        <div class="pos">
+          <div class="row"><small>Ticket #2048 · Station 3</small><span class="pill" style="--c:#f5b84b">Open</span></div>
+          <div class="pos-items">
+            <div class="row"><span>Gel manicure</span><b>$35.00</b></div>
+            <div class="row"><span>Nail art ×2</span><b>$10.00</b></div>
+            <div class="row total"><span>Total</span><b>$45.00</b></div>
+          </div>
+          <div class="seg-group">
+            <div class="seg" id="hwPlatform" role="radiogroup" aria-label="Platform">
+              <button type="button" data-v="ios" aria-pressed="true">iOS</button><button type="button" data-v="android" aria-pressed="false">Android</button>
+            </div>
+            <div class="seg" id="hwTransport" role="radiogroup" aria-label="Connection">
+              <button type="button" data-v="BLE" aria-pressed="true">BLE</button><button type="button" data-v="USB" aria-pressed="false">USB</button><button type="button" data-v="Wi-Fi" aria-pressed="false">Wi-Fi</button>
+            </div>
+          </div>
+          <label class="drop"><input type="checkbox" id="hwDrop" /> Drop the connection once</label>
+          <button class="btn solid hw-go" id="hwCharge" type="button">Charge $45.00</button>
+        </div>
+        <div class="hw-row">
+          <div class="terminal">
+            <div class="t-screen"><span id="tScreen">Ready</span></div>
+            <div class="t-keys"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <span class="t-label">Payment terminal</span>
+            <div class="card-chip" id="hwCard"></div>
+          </div>
+          <div class="printer">
+            <div class="p-body"><span class="p-led" id="pLed"></span><div class="p-slot"></div></div>
+            <div class="receipt" id="hwReceipt"><div>
+              <b>GLOW NAILS &amp; SPA</b><br/>Ticket #2048<br/>--------------------<br/>Gel manicure&nbsp;&nbsp;&nbsp;35.00<br/>Nail art x2&nbsp;&nbsp;&nbsp;&nbsp;10.00<br/>--------------------<br/><b>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;45.00</b><br/>CONTACTLESS · APPROVED<br/>Thank you!
+            </div></div>
+            <span class="t-label">Receipt printer</span>
+          </div>
+        </div>
+      </div>
+      <div class="hw-side">
+        <ol class="layers" id="hwLayers">
+          <li data-l="js"><b>React Native · JS API</b><small>payments.charge({ amount })</small></li>
+          <li data-l="turbo"><b>Turbo Native Module</b><small>typed bridge, no JSON hop</small></li>
+          <li data-l="native"><b id="hwNativeName">Swift module</b><small>one interface per vendor</small></li>
+          <li data-l="sdk"><b>Vendor SDK</b><small>Dejavoo · Star Micronics · Sunmi</small></li>
+          <li data-l="io"><b id="hwIoName">Transport · BLE</b><small>connect · retry · resume</small></li>
+        </ol>
+        <pre class="log" id="hwLog" aria-live="polite"><span class="dim">// press “Charge $45.00”</span></pre>
+        <p class="hw-note">Simulation for illustration — no real payment, no real device.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="work">
+  <div class="shell">
+    <div class="sec-head">
+      <div><span class="eyebrow">Selected work</span><h2 class="h2">Apps that run<br/>real businesses.</h2></div>
+      <p>The problem, what I owned, the hardest part, and the result.</p>
+    </div>
+    <div id="projects"></div>
+  </div>
+</section>
+
+<section class="sec" id="lab">
+  <div class="shell">
+    <div class="sec-head">
+      <div><span class="eyebrow">Lab · side projects</span><h2 class="h2">Things I build<br/>on my own time.</h2></div>
+      <p>Shipped end to end on my own — idea, design, code, store. Some built with an AI-assisted workflow.</p>
+    </div>
+    <div class="labs" id="labs"></div>
+    <div id="ossWrap">
+      <h3 class="sub-h">Open source</h3>
+      <div class="oss" id="oss"></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="experience">
+  <div class="shell">
+    <div class="sec-head">
+      <div><span class="eyebrow">Experience</span><h2 class="h2">14 years, from native iOS<br/>to multi-app React Native.</h2></div>
+      <p>Native roots, full-stack range, and six years leading React Native delivery.</p>
+    </div>
+    <div class="arc" id="arc"></div>
+    <div class="timeline" id="timeline"></div>
+  </div>
+</section>
+
+<section class="sec" id="build">
+  <div class="shell">
+    <div class="sec-head">
+      <div><span class="eyebrow">How I build</span><h2 class="h2">From spec to store,<br/>and after.</h2></div>
+      <p>Draft — replace with your own process and real examples.</p>
+    </div>
+    <div class="steps" id="steps"></div>
+    <dl class="stack" id="stack"></dl>
+  </div>
+</section>
+
+<footer class="contact" id="contact">
+  <div class="shell">
+    <span class="eyebrow">Let's build</span>
+    <h2>Need a mobile engineer<br/>who owns the outcome?</h2>
+    <a class="mail" data-link="email"></a>
+    <div class="contact-actions">
+      <a class="btn solid" data-link="cv" download>Download CV (PDF) ↓</a>
+      <a class="btn ghost" data-link="linkedin" target="_blank" rel="noreferrer">View LinkedIn ↗</a>
+    </div>
+    <p class="avail">Ho Chi Minh City · Open to remote / hybrid · Available immediately</p>
+    <div class="foot">
+      <span>© 2026 Tran Hoang Nha</span>
+      <span id="builtWith"></span>
+      <div><a data-link="linkedin" target="_blank" rel="noreferrer">LinkedIn ↗</a><a data-link="github" target="_blank" rel="noreferrer">GitHub ↗</a><a data-link="cv" download>CV ↓</a></div>
+    </div>
+  </div>
+</footer>
+
+<div class="note">Preview · số có viền đứt và nhãn <b>SAMPLE</b> là số mẫu. Ảnh tạm lấy từ nailsoft.com.</div>
+
+<script>
+// =================================================================
+// CONTENT — chỉ cần sửa ở đây.
+//   Một số liệu: { value, label, source, sample }
+//   sample: true  → số mẫu, hiện viền đứt + nhãn SAMPLE. Có số thật thì xoá dòng sample.
+//   value: ""     → số đó tự ẩn. Mảng rỗng [] → cả khối tự ẩn.
+//   source        → không hiển thị, chỉ để nhớ số lấy từ đâu.
+// =================================================================
+const IMG = "https://nailsoft.com/wp-content/uploads/";   // ảnh tạm từ nailsoft.com
+const PLAY = {
+  a: "https://play.google.com/store/apps/details?id=com.hpconsumer",
+  b: "https://play.google.com/store/apps/details?id=com.harmonypay.one",
+};
+
+const profile = {
+  links: {
+    cv: "Tran_Hoang_Nha_CV.pdf",          // file PDF đặt cạnh trang (sau này: public/)
+    linkedin: "https://www.linkedin.com/in/nhatran1990",
+    github: "https://github.com/thnha",
+    email: "thediffest@gmail.com",
+  },
+  photo: "",                              // TODO: đường dẫn ảnh chân dung (vuông, ≥400px). Trống → hiện chữ "TN"
+  initials: "TN",
+  intro: "Hi, I'm Nha — a Senior React Native Engineer in Ho Chi Minh City. I like the messy places where apps meet real businesses: payments, printers, offline sync — and I stay until it works in production.",   // TODO: viết lại bằng giọng của bạn
+  facts: [
+    ["Role", "Senior React Native Engineer"],
+    ["Experience", "14+ yrs · 6+ yrs React Native"],
+    ["Strengths", "Multi-app architecture · native modules · payments & hardware"],
+    ["Shipped for", "U.S. salons (NailSoft) · Jollibee Vietnam"],
+    ["Location", "Ho Chi Minh City · remote / hybrid"],
+    ["Availability", "Available immediately"],
+  ],
+  lighthouse: { value: "98", sample: true },   // điểm Lighthouse performance của trang thật
+  proof: [
+    { value: "14+", label: "years building software", source: "CV" },
+    { value: "6+",  label: "years React Native in production", source: "CV" },
+    { value: "8",   label: "production apps shipped", source: "CV: NailSoft 5 + Jollibee 3" },
+  ],
+};
+
+const apps = [
+  { id: "salonsoft", n: "S", name: "SalonSoft", accent: "#8b7cff", project: "nailsoft",
+    desc: "Pocket-sized POS for salon owners: revenue, appointments and staff presence 24/7 from a phone; staff see their own jobs and earnings.",
+    role: "Senior React Native Engineer · built & shipped",
+    hard: "Bringing the core of a full-size POS to a phone without losing speed",   // TODO: xác nhận
+    tags: ["React Native", "New Architecture", "TypeScript"],
+    video: "",            // TODO: video quay màn hình (mp4/webm, dọc, 5–10s). Có video → thay mock UI
+    metrics: [
+      { value: "5", label: "apps in the NailSoft ecosystem", source: "CV" },
+      { value: "4.6★", label: "Google Play rating", sample: true },
+    ] },
+  { id: "bookedby", n: "B", name: "Booked By", accent: "#2f6fe4", project: "nailsoft",
+    desc: "Customer app: book appointments, pay, buy gift cards, get salon offers and discover local salons.",
+    role: "Senior React Native Engineer · built & shipped",
+    hard: "Booking, payments and gift cards in one consumer flow",                     // TODO
+    tags: ["React Native", "Maps", "Payments", "Push"],
+    metrics: [
+      { value: "10K+", label: "downloads", sample: true },
+      { value: "4.7★", label: "store rating", sample: true },
+    ] },
+  { id: "checkin", n: "C", name: "Check-in", accent: "#3fd0c9", project: "checkin",
+    desc: "In-salon check-in: guests pick services up front and know when they will be served.",
+    role: "Senior React Native Engineer · built & shipped",
+    hard: "",                                                                          // TODO
+    tags: ["React Native", "Kiosk", "Real-time"],
+    metrics: [
+      { value: "1,000+", label: "salons using the platform", sample: true },
+    ] },
+  { id: "hardware", n: "H", name: "Payments & Hardware", accent: "#f5b84b", project: "hardware",
+    desc: "Reusable native modules connecting the apps to Dejavoo terminals and Star Micronics / Sunmi printers.",
+    role: "Native modules in Swift & Kotlin",
+    hard: "One unified JavaScript API over different vendor SDKs, shared across the ecosystem",
+    tags: ["Swift", "Kotlin", "Dejavoo", "Star Micronics", "Sunmi"],
+    cta: { label: "Try the hardware demo →", href: "#hwlab" },
+    metrics: [
+      { value: "3", label: "device vendors integrated", source: "CV" },
+      { value: "3", label: "transports · BLE · USB · Wi-Fi", source: "CV" },
+    ] },
+  { id: "ordering", n: "J", name: "Jollibee Ordering", accent: "#ff5a4e", project: "jollibee",
+    desc: "Jollibee Vietnam digital ordering — Consumer, Driver and Merchant apps.",
+    role: "Senior React Native Engineer · owned builds & releases",
+    hard: "Syncing order events across three apps with GraphQL and cross-app push",
+    tags: ["GraphQL", "Google Maps", "Push", "Real-time chat"],
+    metrics: [
+      { value: "3", label: "apps · consumer · driver · merchant", source: "CV" },
+      { value: "100K+", label: "consumer downloads", sample: true },
+    ] },
+];
+
+const capabilities = [
+  { c: "#8b7cff", title: "Multi-app ecosystems", project: "nailsoft",
+    text: "Architect and ship several apps on one shared codebase — modules, design system and native layer reused across products.",
+    metrics: [{ value: "5", label: "apps, one ecosystem", source: "CV" }, { value: "~60%", label: "shared code", sample: true }] },
+  { c: "#f5b84b", title: "Native modules & hardware", project: "hardware", demo: "#hwlab",
+    text: "Swift and Kotlin modules for terminals, printers and scanners over BLE, USB and Wi-Fi, exposed as one clean JS API.",
+    metrics: [{ value: "3", label: "vendors · 3 transports", source: "CV" }] },
+  { c: "#4ade80", title: "Payments", project: "hardware",
+    text: "Card-present payments in production POS: terminals, tips, receipts and Tap to Pay.",
+    metrics: [{ value: "5", label: "platforms · Clover, Dejavoo, PAX, Sunmi, Tap to Pay", source: "CV" }] },
+  { c: "#2f6fe4", title: "New Architecture migration", project: "nailsoft",
+    text: "Moved production apps to Fabric and Turbo Native Modules, rewriting bridge modules without breaking releases.",
+    metrics: [{ value: "2", label: "production apps migrated", source: "CV" }, { value: "0.68 → 0.76", label: "React Native version", sample: true }] },
+  { c: "#ff7aa8", title: "Performance", project: "nailsoft",
+    text: "Profile startup, list rendering and re-renders, then fix it once in the shared codebase so every app benefits.",
+    metrics: [{ value: "−40%", label: "startup time", sample: true }, { value: "99.8%", label: "crash-free sessions", sample: true }] },
+  { c: "#ff5a4e", title: "Real-time & release ownership", project: "jollibee",
+    text: "Order sync across consumer, driver and merchant apps; owning builds, versions and store releases end to end.",
+    metrics: [{ value: "8", label: "apps released to stores", source: "CV" }] },
+];
+
+const projects = [
+  { id: "nailsoft", c: "#8b7cff", when: "NailSoft · Levinci Group · 2021—2026",
+    title: "Salon POS & booking ecosystem — 5 apps",
+    media: { type: "img", src: IMG + "2024/03/nailsoft-pos.png", alt: "NailSoft tablet POS — appointment book" },
+    problem: "SaaS point-of-sale & booking platform for U.S. nail salons: operations, consumer booking, staff, check-in and retail.",
+    role: "Built and shipped Merchant, Booked By, SalonSoft, Check-in and Retailer with a ~20-person team; owned releases.",
+    hard: "Migrated two production apps to the New Architecture and led performance work across all five.",
+    metrics: [{ value: "1,000+", label: "salons", sample: true }, { value: "~20", label: "people team", source: "CV" }, { value: "4.6★", label: "Play rating", sample: true }],
+    links: [{ label: "Read case study →", url: "#" }, { label: "Android app ↗", url: PLAY.a, sub: true }, { label: "Android app ↗", url: PLAY.b, sub: true }] },
+  { id: "hardware", c: "#f5b84b", when: "NailSoft · Platform",
+    title: "Payments & in-store hardware",
+    media: { type: "img", src: IMG + "2024/10/Smart-pos-white.png", alt: "NailSoft Smart POS hardware ecosystem" },
+    problem: "Payment terminals and receipt printers from three vendors, over BLE, USB and Wi-Fi, in busy salons.",
+    role: "Wrote reusable native modules in Swift and Kotlin and the React Native layer on top.",
+    hard: "Exposing different vendor SDKs through one unified JavaScript API shared by every app.",
+    metrics: [{ value: "3", label: "vendors", source: "CV" }, { value: "3", label: "transports", source: "CV" }],
+    links: [{ label: "Read case study →", url: "#" }] },
+  { id: "checkin", c: "#3fd0c9", when: "NailSoft · Check-in",
+    title: "Self check-in kiosk",
+    media: { type: "img", src: IMG + "2024/01/check-in.png", alt: "NailSoft check-in kiosk" },
+    problem: "Walk-in guests wait without knowing when they'll be served; front desk gets overloaded.",
+    role: "Built and shipped the Check-in app.",                                        // TODO: chi tiết
+    hard: "",                                                                          // TODO
+    metrics: [{ value: "−30%", label: "front-desk wait", sample: true }],
+    links: [{ label: "Read case study →", url: "#" }] },
+  { id: "bookedby", c: "#2f6fe4", when: "NailSoft · Booked By",
+    title: "Booked By — consumer booking",
+    media: { type: "phones", srcs: ["2024/01/phone-nailsoft-5.png", "2024/01/phone-nailsoft-main.png", "2024/01/phone-nailsoft-4.png"].map(p => IMG + p) },
+    problem: "Customers need to book, pay and buy gift cards without calling the salon.",
+    role: "Built and shipped the consumer app.",                                       // TODO
+    hard: "",
+    metrics: [{ value: "10K+", label: "downloads", sample: true }],
+    links: [{ label: "Read case study →", url: "#" }] },
+  { id: "jollibee", c: "#ff5a4e", when: "Jollibee Vietnam · Levinci Group · 2020—2021",
+    title: "Digital ordering — consumer, driver, merchant",
+    media: { type: "placeholder", text: "Ảnh Jollibee — TODO" },
+    problem: "Ordering, delivery and merchant workflows had to stay in sync in real time.",
+    role: "Built and shipped three React Native apps; owned builds and store releases.",
+    hard: "Order events and status kept in sync across three apps with GraphQL and cross-app push.",
+    metrics: [{ value: "3", label: "apps", source: "CV" }, { value: "100K+", label: "downloads", sample: true }],
+    links: [{ label: "Read case study →", url: "#" }] },
+];
+
+// status: "live" | "ai" | "wip"  → nhãn màu trên thẻ
+const lab = [
+  { status: "live", c: "#4ade80", kind: "Mobile game", title: "TODO: tên game đang chạy",
+    text: "TODO: game là gì, chơi thế nào, dành cho ai (1–2 câu).",
+    built: "TODO: engine / stack — vd Unity, React Native, Godot…",
+    metrics: [{ value: "5K+", label: "downloads", sample: true }, { value: "4.5★", label: "rating", sample: true }],
+    image: "", links: [{ label: "Google Play ↗", url: "" }, { label: "App Store ↗", url: "" }] },
+  { status: "ai", c: "#c084fc", kind: "Game · AI-assisted", title: "TODO: tên game AI",
+    text: "TODO: game là gì. Phần nào AI làm, phần nào bạn quyết định (gameplay, kiến trúc, polish).",
+    built: "TODO: stack + công cụ AI (vd Claude Code, Cursor…)",
+    metrics: [{ value: "2 weeks", label: "idea to playable", sample: true }],
+    image: "", links: [{ label: "Play in browser ↗", url: "" }] },
+  { status: "wip", c: "#f5b84b", kind: "Mobile app · AI-assisted", title: "TODO: tên app chưa release",
+    text: "TODO: app giải quyết việc gì, cho ai.",
+    built: "TODO: stack",
+    metrics: [],
+    image: "", links: [{ label: "Join TestFlight ↗", url: "" }, { label: "Watch demo ↗", url: "" }] },
+];
+// Repo open source. Mảng rỗng [] → cả khối "Open source" tự ẩn.
+const openSource = [
+  { name: "TODO/react-native-receipt-printer", desc: "TODO: one API for Star Micronics and Sunmi receipt printers over BLE, USB and Wi-Fi (phần không vi phạm NDA).",
+    lang: "TypeScript · Kotlin · Swift", stars: { value: "120", sample: true }, url: "" },
+  { name: "TODO/second-repo", desc: "TODO: repo side project — game hoặc app AI.",
+    lang: "TypeScript", stars: { value: "", sample: true }, url: "" },
+];
+
+const STATUS = { live: "Live", ai: "AI-assisted", wip: "In development" };
+
+const arc = [
+  ["2012", "Native iOS"], ["2015", "Full-stack + React Native"], ["2018", "Mobile + backend + Unity"], ["2020", "Senior React Native"], ["2021", "Multi-app POS ecosystem"],
+];
+
+const experience = [
+  { when: "03/2021 — 06/2026", company: "Levinci Group — NailSoft", title: "Senior React Native Engineer",
+    points: ["Built and shipped a five-app ecosystem with a ~20-person cross-functional team.",
+             "Native modules in Swift / Kotlin for Dejavoo, Star Micronics and Sunmi over BLE, USB, Wi-Fi.",
+             "Migrated two production apps to the New Architecture; led performance work across five apps.",
+             "Owned planning, versioning and App Store / Google Play releases."],
+    tags: ["React Native", "Swift", "Kotlin", "TurboModules"] },
+  { when: "2020 — 2021", company: "Levinci Group — Jollibee Vietnam", title: "Senior React Native Engineer",
+    points: ["Built Consumer, Driver and Merchant apps.",
+             "GraphQL + cross-app push to sync order status; maps, chat, vouchers, order tracking.",
+             "Owned builds and store releases."],
+    tags: ["GraphQL", "Google Maps", "Push"] },
+  { when: "2018 — 2020", company: "Southeast Asia Technology Solutions", title: "Full-Stack Engineer",
+    points: ["Spa Diva booking app: React Native client and Node.js services.", "Battle for Rolephia MOBA client features in Unity / C#."],
+    tags: ["React Native", "Node.js", "Unity"] },
+  { when: "2015 — 2018", company: "Creants Studio", title: "Full-Stack Engineer",
+    points: ["Cross-platform news reader in React Native.", "Backend services for MU OF HEROES in Java / Spring."],
+    tags: ["React Native", "Java", "Spring"] },
+  { when: "2012 — 2015", company: "Microgame Corp", title: "iOS Engineer",
+    points: ["Ola social chat iOS app in Objective-C; REST APIs and web games integration."],
+    tags: ["Objective-C", "iOS"] },
+];
+
+const steps = [
+  ["Plan the risk first", "Prototype the uncertain part — a vendor SDK, a sync edge case — before committing the design."],
+  ["Share, don't copy", "Build once in shared modules so every app in the ecosystem gets the fix."],
+  ["Measure", "Profile startup, lists and re-renders on real low-end devices, not just simulators."],
+  ["Own the release", "Versioning, store submission and watching production after it ships."],
+];
+
+const stack = [
+  ["Mobile", "React Native (Fabric, TurboModules) · TypeScript · Swift / Objective-C · Kotlin / Java"],
+  ["Devices & payments", "Clover · Dejavoo · PAX · Sunmi · Tap to Pay · Star Micronics · BLE / USB / Wi-Fi · barcode & camera"],
+  ["State & data", "Redux · Zustand · TanStack Query · offline-first sync"],
+  ["Delivery", "Jest · React Native Testing Library · Fastlane · Gradle"],
+  ["Backend", "Node.js · Express · .NET · GraphQL · WebSockets · Socket.IO · SignalR · PostgreSQL · MongoDB · Firebase · GCP"],
+];
+
+// =================================================================
+// RENDER — không cần sửa phần dưới.
+// =================================================================
+const $ = id => document.getElementById(id);
+const stat = m => `<div><b class="${m.sample ? "sample" : ""}">${m.value}</b><span>${m.label}</span></div>`;
+function renderStats(el, list = []) {
+  const items = list.filter(m => m.value);
+  el.hidden = items.length === 0;
+  el.innerHTML = items.map(stat).join("");
+}
+const statsHtml = list => { const i = (list || []).filter(m => m.value); return i.length ? `<div class="stats">${i.map(stat).join("")}</div>` : ""; };
+
+renderStats($("proof"), profile.proof);
+
+// recruiter card
+$("avatar").innerHTML = profile.photo ? `<img src="${profile.photo}" alt="Tran Hoang Nha">` : profile.initials;
+$("rcIntro").textContent = profile.intro;
+$("rcFacts").innerHTML = profile.facts.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join("");
+$("copyEmail").addEventListener("click", async e => {
+  try { await navigator.clipboard.writeText(profile.links.email); e.target.textContent = "Copied ✓"; }
+  catch { location.href = `mailto:${profile.links.email}`; }
+  setTimeout(() => e.target.textContent = "Copy email", 1800);
+});
+
+// open source
+$("ossWrap").hidden = openSource.length === 0;
+$("oss").innerHTML = openSource.map(r => `
+  <a class="repo" ${r.url ? `href="${r.url}" target="_blank" rel="noreferrer"` : ""}>
+    <span class="name">${r.name}</span>
+    <p>${r.desc}</p>
+    <span class="meta">${r.lang ? `<span>${r.lang}</span>` : ""}${r.stars.value ? `<span>★ <b class="${r.stars.sample ? "sample" : ""}">${r.stars.value}</b></span>` : ""}</span>
+  </a>`).join("");
+
+// footer
+const lh = profile.lighthouse;
+$("builtWith").innerHTML = `Built with Next.js · static export${lh && lh.value ? ` · Lighthouse <b class="${lh.sample ? "sample" : ""}">${lh.value}</b>` : ""}`;
+document.querySelectorAll("[data-link]").forEach(a => {
+  const k = a.dataset.link, v = profile.links[k];
+  if (!v) { a.remove(); return; }                 // link trống → nút tự ẩn
+  a.href = k === "email" ? `mailto:${v}` : v;
+  if (k === "email") a.textContent = `${v} ↗`;
+});
+
+$("caps").innerHTML = capabilities.map((c, i) => `
+  <article class="cap" style="--c:${c.c}">
+    <span class="num">0${i + 1}</span>
+    <h3>${c.title}</h3>
+    <p>${c.text}</p>
+    ${statsHtml(c.metrics)}
+    <a class="proof-link" href="#p-${c.project}">See it in ${projects.find(p => p.id === c.project).title.split(" — ")[0]} →</a>
+    ${c.demo ? `<a class="proof-link" href="${c.demo}">Try it live ↗</a>` : ""}
+  </article>`).join("");
+
+const media = m => {
+  if (m.type === "img") return `<div class="media"><img src="${m.src}" alt="${m.alt}" loading="lazy"><span class="credit">temp image · nailsoft.com</span></div>`;
+  if (m.type === "phones") return `<div class="media dark"><div class="phones">${m.srcs.map(s => `<img src="${s}" alt="" loading="lazy">`).join("")}</div><span class="credit">temp image · nailsoft.com</span></div>`;
+  return `<div class="media dark"><span class="ph">${m.text}</span></div>`;
+};
+$("projects").innerHTML = projects.map(p => `
+  <article class="project" id="p-${p.id}" style="--c:${p.c}">
+    ${media(p.media)}
+    <div>
+      <span class="eyebrow">${p.when}</span>
+      <h3>${p.title}</h3>
+      ${statsHtml(p.metrics)}
+      <div class="qa">
+        <div><b>Problem</b><span>${p.problem}</span></div>
+        ${p.role ? `<div><b>My role</b><span>${p.role}</span></div>` : ""}
+        ${p.hard ? `<div><b>Hard part</b><span>${p.hard}</span></div>` : ""}
+      </div>
+      <div class="links">${p.links.map(l => `<a class="link ${l.sub ? "sub" : ""}" href="${l.url}" ${l.url.startsWith("http") ? 'target="_blank" rel="noreferrer"' : ""}>${l.label}</a>`).join("")}</div>
+    </div>
+  </article>`).join("");
+
+$("labs").innerHTML = lab.map(l => `
+  <article class="lab" style="--c:${l.c}">
+    <div class="lab-media">${l.image ? `<img src="${l.image}" alt="" loading="lazy">` : `<span>Screenshot / video</span>`}</div>
+    <div class="lab-body">
+      <div class="lab-top"><span class="badge">${STATUS[l.status]}</span><span class="kind">${l.kind}</span></div>
+      <h3>${l.title}</h3>
+      <p>${l.text}</p>
+      ${statsHtml(l.metrics)}
+      <p class="built">${l.built}</p>
+      <div class="links">${l.links.filter(x => x.url).map(x => `<a class="link" href="${x.url}" target="_blank" rel="noreferrer">${x.label}</a>`).join("")}</div>
+    </div>
+  </article>`).join("");
+
+$("arc").innerHTML = arc.map(([y, t]) => `<span><b>${y}</b>${t}</span>`).join("");
+$("timeline").innerHTML = experience.map(e => `
+  <article>
+    <span class="when">${e.when}</span>
+    <div><h3>${e.company}</h3><span class="title">${e.title}</span></div>
+    <div><ul>${e.points.map(x => `<li>${x}</li>`).join("")}</ul><div class="tags">${e.tags.map(t => `<span>${t}</span>`).join("")}</div></div>
+  </article>`).join("");
+
+$("steps").innerHTML = steps.map(([h, t]) => `<div class="step"><h3>${h}</h3><p>${t}</p></div>`).join("");
+$("stack").innerHTML = stack.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("");
+
+// ---------- hero interaction ----------
+const hero = $("hero"), iconsEl = $("icons"), swap = $("swap");
+const desktop = matchMedia("(min-width: 821px)");
+const canHover = matchMedia("(hover: hover) and (prefers-reduced-motion: no-preference)");
+const angles = [-148, 180, 148, -32, 32];   // deg, 0 = right, clockwise
+let current = 0;
+
+const icons = apps.map((a, i) => {
+  const b = document.createElement("button");
+  b.className = `icon ${Math.cos(angles[i] * Math.PI / 180) > 0 ? "right" : "left"}`;
+  b.style.setProperty("--c", a.accent);
+  b.innerHTML = `${a.n}<span class="label">${a.name}</span>`;
+  b.setAttribute("aria-label", a.name);
+  b.addEventListener("click", () => select(i));
+  iconsEl.appendChild(b);
+  return b;
+});
+
+function place() {
+  const stage = $("stage").getBoundingClientRect();
+  const phone = document.querySelector(".phone").getBoundingClientRect();
+  const minX = phone.width / 2 + 44;
+  const rx = Math.max(minX + 40, Math.min(280, stage.width / 2 - 36));
+  const ry = Math.min(230, phone.height / 2 - 20);
+  icons.forEach((b, i) => {
+    if (!desktop.matches) { b.style.transform = ""; return; }
+    const sel = i === current;
+    const t = angles[i] * Math.PI / 180;
+    let x = Math.cos(t) * rx, y = Math.sin(t) * ry;
+    if (sel) { x = Math.sign(x) * Math.max(Math.abs(x) * 0.8, minX); y *= 0.8; }
+    b.style.transform = `translate(${x}px, ${y}px) scale(${sel ? 1.22 : 1})`;
+  });
+}
+
+// video thay cho mock UI — chỉ tải khi app được chọn lần đầu
+const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)");
+function playVideo(a) {
+  document.querySelectorAll(".screen-video").forEach(v => v.pause());
+  if (!a.video) return;
+  const el = document.querySelector(`.app[data-app="${a.id}"]`);
+  let v = el.querySelector("video");
+  if (!v) {
+    v = Object.assign(document.createElement("video"), { src: a.video, muted: true, loop: true, playsInline: true, className: "screen-video" });
+    el.classList.add("shot-full");
+    el.replaceChildren(v);
+  }
+  if (!reduceMotion.matches) v.play().catch(() => {});
+}
+
+function select(i, instant) {
+  current = i;
+  const a = apps[i];
+  hero.style.setProperty("--accent", a.accent);
+  icons.forEach((b, j) => b.setAttribute("aria-pressed", String(j === i)));
+  document.querySelectorAll(".app").forEach(s => s.classList.toggle("on", s.dataset.app === a.id));
+  playVideo(a);
+  place();
+  const fill = () => {
+    $("pName").textContent = a.name;
+    $("pDesc").textContent = a.desc;
+    $("pRole").textContent = a.role;
+    $("pHard").textContent = a.hard;
+    $("pRoleRow").hidden = !a.role;
+    $("pHardRow").hidden = !a.hard;
+    renderStats($("pMetrics"), a.metrics);
+    $("pTags").innerHTML = a.tags.map(t => `<span>${t}</span>`).join("");
+    $("pCount").textContent = `0${i + 1} / 0${apps.length}`;
+    $("pCta").href = a.cta ? a.cta.href : `#p-${a.project}`;
+    $("pCta").textContent = a.cta ? a.cta.label : "Explore project →";
+    swap.classList.remove("out");
+  };
+  if (instant) return fill();
+  swap.classList.add("out");
+  setTimeout(fill, 220);
+}
+
+iconsEl.addEventListener("keydown", e => {
+  const d = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key];
+  if (!d) return;
+  e.preventDefault();
+  const n = (current + d + apps.length) % apps.length;
+  select(n); icons[n].focus();
+});
+
+const stageEl = $("stage"), wrap = $("phoneWrap");
+stageEl.addEventListener("pointermove", e => {
+  if (!canHover.matches) return;
+  const r = stageEl.getBoundingClientRect();
+  const px = (e.clientX - r.left) / r.width - .5, py = (e.clientY - r.top) / r.height - .5;
+  wrap.style.transform = `rotateY(${px * 14}deg) rotateX(${-py * 10}deg)`;
+});
+stageEl.addEventListener("pointerleave", () => wrap.style.transform = "");
+
+addEventListener("resize", place);
+desktop.addEventListener("change", place);
+select(0, true);
+
+// ---------- hardware lab ----------
+const hw = { platform: "ios", transport: "BLE", running: false };
+const sleep = ms => new Promise(r => setTimeout(r, reduceMotion.matches ? Math.min(ms, 120) : ms));
+const L = id => document.querySelector(`#hwLayers li[data-l="${id}"]`);
+const logEl = $("hwLog"), screenEl = $("tScreen");
+
+function seg(groupId, key, after) {
+  $(groupId).addEventListener("click", e => {
+    const b = e.target.closest("button");
+    if (!b || hw.running) return;
+    $(groupId).querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+    hw[key] = b.dataset.v;
+    after && after();
+  });
+}
+const relabel = () => {
+  $("hwNativeName").textContent = hw.platform === "ios" ? "Swift module" : "Kotlin module";
+  $("hwIoName").textContent = `Transport · ${hw.transport}`;
+};
+seg("hwPlatform", "platform", relabel);
+seg("hwTransport", "transport", relabel);
+
+function log(html) { logEl.insertAdjacentHTML("beforeend", "\n" + html); logEl.scrollTop = logEl.scrollHeight; }
+function light(id, cls = "on") {
+  document.querySelectorAll("#hwLayers li").forEach(li => li.classList.remove("on", "warn"));
+  if (id) L(id).classList.add(cls);
+}
+function screen(text, cls = "") { screenEl.textContent = text; screenEl.parentElement.className = "t-screen " + cls; }
+
+$("hwCharge").addEventListener("click", async () => {
+  if (hw.running) return;
+  hw.running = true;
+  const btn = $("hwCharge"), lang = hw.platform === "ios" ? "Swift" : "Kotlin", T = hw.transport;
+  const drop = $("hwDrop").checked;
+  btn.disabled = true; btn.textContent = "Processing…";
+  document.querySelectorAll(".seg button").forEach(b => b.disabled = true);
+  document.querySelectorAll("#hwLayers li").forEach(li => li.classList.remove("done"));
+  $("hwReceipt").classList.remove("out"); $("pLed").classList.remove("on");
+  logEl.innerHTML = '<span class="dim">// txn 7F3A · $45.00</span>';
+
+  light("js");     log(`<span class="k">[JS]</span> await payments.charge({ amount: 4500 })`); await sleep(600);
+  light("turbo");  log(`<span class="k">[Turbo]</span> PaymentModule.sale(4500) → native`); await sleep(600);
+  light("native"); log(`<span class="k">[${lang}]</span> DejavooClient.connect(.${T.toLowerCase().replace("-", "")})`); await sleep(600);
+  light("io");     log(`<span class="k">[${T}]</span> connecting to terminal…`); screen("Connecting…"); await sleep(900);
+  if (drop) {
+    light("io", "warn"); screen("Reconnecting…", "warn");
+    log(`<span class="bad">[${T}] connection lost — retry 1/3, same txn id 7F3A</span>`); await sleep(1300);
+    log(`<span class="k">[${T}]</span> reconnected · resuming txn 7F3A (no double charge)`); await sleep(500);
+  }
+  log(`<span class="ok">[${T}] connected</span>`);
+  light("sdk");    log(`<span class="k">[SDK]</span> sale(txn: 7F3A, amount: $45.00)`); screen("Tap card\n$45.00"); await sleep(700);
+  $("hwCard").classList.add("tap"); await sleep(1100);
+  screen("Processing…"); log(`<span class="k">[Terminal]</span> card read · contactless`); await sleep(900);
+  $("hwCard").classList.remove("tap");
+  screen("APPROVED ✓", "ok"); log(`<span class="ok">[SDK] APPROVED</span>`); await sleep(500);
+  ["sdk", "io", "native", "turbo", "js"].forEach(id => L(id).classList.add("done"));
+  light("js");     log(`<span class="k">[JS]</span> ← { status: "approved", txn: "7F3A" }`); await sleep(600);
+  light("native"); log(`<span class="k">[${lang}]</span> PrinterModule.print(receipt) via ${T}`); $("pLed").classList.add("on");
+  $("hwReceipt").classList.add("out"); await sleep(1500);
+  light(null);     log(`<span class="ok">[Printer] receipt printed ✓</span>`);
+
+  btn.disabled = false; btn.textContent = "Run again";
+  document.querySelectorAll(".seg button").forEach(b => b.disabled = false);
+  hw.running = false;
+});
+</script>
+</body>
+</html>

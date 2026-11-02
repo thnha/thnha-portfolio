@@ -1,38 +1,24 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const body = Inter({ subsets: ["latin"], variable: "--font-body" });
+const display = Space_Grotesk({ subsets: ["latin"], variable: "--font-display" });
 
 export const metadata: Metadata = {
-  title: "Nha Tran — Mobile Engineer Portfolio",
-  description: "Senior React Native Engineer with 13+ years of experience building dependable mobile products, payment systems and hardware integrations.",
+  title: "Nha Tran — Senior React Native Engineer",
+  description:
+    "Senior React Native Engineer with 14+ years of experience: multi-app POS ecosystems, payments, in-store hardware integrations and production releases on iOS and Android.",
   icons: {
     icon: `${process.env.NEXT_PUBLIC_BASE_PATH}/favicon.svg`,
     shortcut: `${process.env.NEXT_PUBLIC_BASE_PATH}/favicon.svg`,
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
+    <html lang="en" className={`${body.variable} ${display.variable}`}>
+      <body>{children}</body>
     </html>
   );
 }
